@@ -41,7 +41,18 @@ def main():
                 if event.key == pygame.K_x:
                     running = False
 
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_w]:
+            paddleA.moveUp(5)
+        if keys[pygame.K_s]:
+            paddleA.moveDown(5)
+        if keys[pygame.K_UP]:
+            paddleB.moveUp(5)
+        if keys[pygame.K_DOWN]:
+            paddleB.moveDown(5)
+
         sprites.update()
+
         screen.fill(BLACK)
         pygame.draw.line(screen, WHITE, [349, 0], [349, 500], 5)
         sprites.draw(screen)
