@@ -3,6 +3,8 @@ from paddle import Paddle
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+GREEN = (0, 255, 172)
+RED = (255, 0, 172)
 
 SIZE = (700, 500)
 
@@ -18,11 +20,11 @@ def main():
 
     clock = pygame.time.Clock()
 
-    paddleA = Paddle(WHITE, 5, 50)
+    paddleA = Paddle(GREEN, 5, 50)
     paddleA.rect.x = 20
     paddleA.rect.y = 200
 
-    paddleB = Paddle(WHITE, 5, 50)
+    paddleB = Paddle(RED, 5, 50)
     paddleB.rect.x = 670
     paddleB.rect.y = 200
 
