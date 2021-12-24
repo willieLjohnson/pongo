@@ -1,5 +1,6 @@
 import pygame
 from paddle import Paddle
+from ball import Ball
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -28,10 +29,15 @@ def main():
     paddleB.rect.x = 670
     paddleB.rect.y = 200
 
+    ball = Ball(WHITE, 5, 5)
+    ball.rect.x = 345
+    ball.rect.y = 195
+
     sprites = pygame.sprite.Group()
 
     sprites.add(paddleA)
     sprites.add(paddleB)
+    sprites.add(ball)
     
     while running:
         for event in pygame.event.get():
@@ -52,6 +58,15 @@ def main():
             paddleB.moveDown(5)
 
         sprites.update()
+
+        if ball.rect.x >= 690:
+            ball.velocity[0] = -ball.velocity[0]
+        if ball.rect.x <= 0:
+            ball.velocity[0] = -ball.velocity[0]
+        if ball.rect.y > 490:
+            ball.velocity[1] = -ball.velocity[1]
+        if ball.rect.y < 0:
+            ball.velocity[1] = -ball.velocity[1]
 
         screen.fill(BLACK)
         pygame.draw.line(screen, WHITE, [349, 0], [349, 500], 5)
