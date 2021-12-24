@@ -1,4 +1,5 @@
 import pygame
+from paddle import Paddle
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -17,13 +18,31 @@ def main():
 
     clock = pygame.time.Clock()
 
+    paddleA = Paddle(WHITE, 5, 50)
+    paddleA.rect.x = 20
+    paddleA.rect.y = 200
+
+    paddleB = Paddle(WHITE, 5, 50)
+    paddleB.rect.x = 670
+    paddleB.rect.y = 200
+
+    sprites = pygame.sprite.Group()
+
+    sprites.add(paddleA)
+    sprites.add(paddleB)
+    
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_x:
+                    running = False
 
+        sprites.update()
         screen.fill(BLACK)
         pygame.draw.line(screen, WHITE, [349, 0], [349, 500], 5)
+        sprites.draw(screen)
         pygame.display.flip()
         clock.tick(60)
 
