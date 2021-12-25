@@ -21,15 +21,15 @@ def main():
 
     clock = pygame.time.Clock()
 
-    paddleA = Paddle(GREEN, 5, 50)
+    paddleA = Paddle(GREEN, 5, 75)
     paddleA.rect.x = 20
     paddleA.rect.y = 200
 
-    paddleB = Paddle(RED, 5, 50)
+    paddleB = Paddle(RED, 5, 75)
     paddleB.rect.x = 670
     paddleB.rect.y = 200
 
-    ball = Ball(WHITE, 5, 5)
+    ball = Ball(WHITE, 10, 10)
     ball.rect.x = 345
     ball.rect.y = 195
 
@@ -68,10 +68,14 @@ def main():
         if ball.rect.y < 0:
             ball.velocity[1] = -ball.velocity[1]
 
+        if pygame.sprite.collide_mask(ball, paddleA) or pygame.sprite.collide_mask(ball, paddleB):
+            ball.bounce()
+        
         screen.fill(BLACK)
         pygame.draw.line(screen, WHITE, [349, 0], [349, 500], 5)
         sprites.draw(screen)
         pygame.display.flip()
+        
         clock.tick(60)
 
     pygame.quit()
